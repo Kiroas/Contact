@@ -17,11 +17,11 @@ public class Contact {
 	private int age;
 	
 	
-	public Contact() {
+	protected Contact() {
 		
 	}
 	
-	protected Contact(String prenom, String nom, String mail, int age) {
+	public Contact(String prenom, String nom, String mail, int age) {
 		this.prenom = prenom;
 		this.nom = nom;
 		this.mail = mail;
@@ -30,7 +30,7 @@ public class Contact {
 	
 	@Override
 	public String toString() {
-		return String.format("Contact[id=%d, prenom='%s', nom='%s', mail='%s', age=%i", id, prenom, nom, mail, age);
+		return String.format("Contact[id=%d, prenom='%s', nom='%s', mail='%s', age=%d", id, prenom, nom, mail, age);
 	}
 
 }
