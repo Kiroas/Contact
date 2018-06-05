@@ -7,9 +7,26 @@
 <body>
 	<p>Revenir au <a href="/">Menu</a></p>
     <p>Liste des contacts :</p>
+    <table>
+    <tr>
+    <td width = "50px"> ID </td>
+    <td width = "100px"> Prenom </td>
+    <td width = "100px"> Nom </td>
+    <td width = "50px"> Mail </td>
+    <td width = "50px"> Age </td>
+    <td width = "50px"> Editer </td>
+    <td width = "50px"> Supprimer </td>
+    </tr>
     <tr th:each="e : ${listeContacts}">
-	<td th:text="${e.getNom()}"/><br/>
+	<td th:text="${e.getId()}"/>
+	<td th:text="${e.getPrenom()}"/>
+	<td th:text="${e.getNom()}"/>
+	<td th:text="${e.getMail()}"/>
+	<td th:text="${e.getAge()}"/>
+	<td> <a href="/edit" th:href="@{/edit/__${e.getId()}__}">Editer</a> </td>
+    <td> <a href="/delete" th:href="@{/delete/__${e.getId()}__}">Supprimer</a> </td>
 	</tr>
+	</table>
 	<p><a href="/form">Creer</a> un contact</p>
 </body>
 </html>

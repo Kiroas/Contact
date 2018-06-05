@@ -24,6 +24,10 @@ public class Application {
 			repository.save(new Contact("John","Doe","John.Doe@gmail.com",25));
 			repository.save(new Contact("Dylan","Rose Dite Rosette","Dylan.Rosediterosette@gmail.com",22));
 			repository.save(new Contact("Jean","Nemarre","Jean.Nemarre@gmail.com",60));
+			repository.save(new Contact("Gilles","Dela Tourrete","Gilles.AH@gmail.com",30));
+			repository.save(new Contact("Paul","Marcq","PaulMarcq.unbut@gmail.com",25));
+			repository.save(new Contact("Hal","Zheimer","Jenesaisplus@gmail.com",95));
+			repository.save(new Contact("Sarah","Croche","Sarah.Pelle@gmail.com",45));
 			
 			log.info("Tous les contacts :");
 			log.info("-------------------------------");
@@ -36,6 +40,8 @@ public class Application {
 			log.info("John Doe :");
 			log.info("-------------------------------");
 			log.info(repository.findByNom("Doe").toString());
+			log.info("-------------------------------");
+			log.info(repository.findOne((long) 1).toString());
 			
 			
 			

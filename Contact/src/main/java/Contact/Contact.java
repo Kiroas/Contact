@@ -33,8 +33,44 @@ public class Contact {
 		return String.format("Contact[id=%d, prenom='%s', nom='%s', mail='%s', age=%d", id, prenom, nom, mail, age);
 	}
 	
+	public Long getId() {
+		return this.id;
+	}
+	
+	public String getPrenom() {
+		return this.prenom;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+	
 	public String getNom() {
 		return this.nom;
+	}
+	
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+	public String getMail() {
+		return this.mail;
+	}
+	
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+	
+	public int getAge() {
+		return this.age;
+	}
+	
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 }

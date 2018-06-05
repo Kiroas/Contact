@@ -8,12 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.MessageCodesResolver;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -41,6 +45,8 @@ public class WebController implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/liste").setViewName("liste");
+        registry.addViewController("/form").setViewName("form");
+        registry.addViewController("/edit").setViewName("edit");
     }
     
     @ModelAttribute(name = "listeContacts")
@@ -59,18 +65,33 @@ public class WebController implements WebMvcConfigurer {
     }
     
     @GetMapping("/form")
-    public String showForm(ContactForm contactForm) {
+    public String showForm(Model m) {
+    	m.addAttribute("contact", new Contact());
         return "form";
     }
     
-    @PostMapping("/")
-    public String checkContactInfo(@Valid ContactForm contactForm, BindingResult bindingResult) {
+    @PostMapping("/add")
+    public String checkContactInfo(@Valid Contact contactForm, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "form";
         }
-        repository.save(new Contact(contactForm.getPrenom(), contactForm.getNom(), contactForm.getMail(), contactForm.getAge()));
+        repository.save(contactForm);
 
+        return "redirect:/liste";
+    }
+    
+    @GetMapping(value={"/edit/{id}"})
+    public String contactEditForm(@PathVariable(required = true, name = "id") Long id, Model model, @Valid Contact contactForm, BindingResult bindingResult) {
+    		Contact c = repository.findOne(id);
+            model.addAttribute("contact", c);
+        return "form";
+    }
+    
+    
+    @RequestMapping(value={"/delete/{id}"}, method = RequestMethod.GET)
+    public String deleteContact(@PathVariable(required = true, name = "id") Long id) {
+            repository.delete(repository.findOne(id));
         return "redirect:/liste";
     }
 
