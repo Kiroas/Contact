@@ -32,5 +32,9 @@ public class Contact {
 	public String toString() {
 		return String.format("Contact[id=%d, prenom='%s', nom='%s', mail='%s', age=%d", id, prenom, nom, mail, age);
 	}
+	
+	public String getNom() {
+		return this.nom;
+	}
 
 }

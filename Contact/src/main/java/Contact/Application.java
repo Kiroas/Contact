@@ -36,6 +36,9 @@ public class Application {
 			log.info("John Doe :");
 			log.info("-------------------------------");
 			log.info(repository.findByNom("Doe").toString());
+			
+			
+			
 		};
 	}
 	

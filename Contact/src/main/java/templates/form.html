@@ -1,0 +1,31 @@
+<html>
+    <body>
+        <form action="#" th:action="@{/}" th:object="${contactForm}" method="post">
+            <table>
+                <tr>
+                    <td>Prenom:</td>
+                    <td><input type="text" th:field="*{prenom}" /></td>
+                    <td th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}">Erreur Prenom</td>
+                </tr>
+                <tr>
+                    <td>Nom:</td>
+                    <td><input type="text" th:field="*{nom}" /></td>
+                    <td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">Erreur Nom</td>
+                </tr>
+                <tr>
+                    <td>Mail:</td>
+                    <td><input type="text" th:field="*{mail}" /></td>
+                    <td th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">Erreur Mail</td>
+                </tr>
+                <tr>
+                    <td>Age:</td>
+                    <td><input type="text" th:field="*{age}" /></td>
+                    <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Erreur Age</td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Submit</button></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
